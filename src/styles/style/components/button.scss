@@ -1,0 +1,12 @@
+.btn {
+    &_primary {
+        color: $light;
+        background-color: $primary;
+
+        &_outline {
+            color: $primary;
+            background-color: $light;
+            border: 1px solid $primary;
+        }
+    }
+}
