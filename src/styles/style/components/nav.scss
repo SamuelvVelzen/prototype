@@ -1,0 +1,101 @@
+.nav {
+    width: 100%;
+
+    border-bottom: 1px solid $grey;
+
+    &_extrabalk {
+        display: flex;
+        justify-content: space-between;
+        padding: $container;
+
+        height: 32px;
+        width: 100%;
+
+        background-color: $primary;
+        color: $light;
+
+        &_text {
+            align-self: center;
+
+            &:first-of-type {
+                font-weight: bold;
+                font-style: italic;
+            }
+        }
+    }
+
+    &_container {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        padding: $space1 $space8;
+
+        &_logo {
+            position: absolute;
+            top: 2rem;
+
+            width: 200px;
+            height: 100px;
+
+            background-image: url('./../images/logos/versbeton.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        &_items {
+            margin-left: auto;
+
+            &_item {
+                display: inline-block;
+                padding: $padding;
+
+                &_link {
+                    text-decoration: none;
+                    color: $dark;
+                    font-size: 18px;
+                }
+
+                &.dropdown {
+                    &::after {
+                        content: '';
+
+                        height: 25px;
+                        width: 25px;
+
+                        background-image: url('./../../images/icons/');
+                        background-repeat: no-repeat;
+                    }
+                }
+
+                &.promotion {
+                    text-transform: uppercase;
+                    border: 1px solid $primary;
+
+                    & > * {
+                        color: $primary;
+                        font-weight: bold;
+                    }
+
+                    &:hover {
+                        background-color: $primary;
+
+                        & > * {
+                            color: $light;
+                        }
+                    }
+                }
+            }
+
+            &_search {
+                display: inline-block;
+
+                height: 25px;
+                width: 25px;
+
+                background-image: url('./../../images/icons/');
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
