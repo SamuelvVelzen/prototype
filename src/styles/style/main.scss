@@ -8,9 +8,49 @@
     box-sizing: border-box;
     letter-spacing: 2px;
     font-family: $font_body;
-    font-size: 20px;
+    color: $dark;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.right {
+    margin-left: auto;
+    text-align: right;
+}
+
+.left {
+    margin-right: auto;
+    text-align: left;
+}
+
+.text {
+    font-size: 23px;
 }
 
 .spanImage {
+    display: block;
+}
+
+.img {
+    background-color: $dark;
+    display: block;
+}
+
+.container {
+    margin: $container_default;
+    position: relative;
+
+    &.first {
+        padding-top: $nav_height + 46px;
+    }
+}
+
+.link {
+    font-size: 23px;
+    color: $dark;
+    text-decoration: underline;
     display: block;
 }
