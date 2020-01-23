@@ -32,12 +32,14 @@
         background-color: $primary;
         font-style: italic;
         border-radius: $radius_small;
+        text-transform: uppercase;
 
         &_outline {
             color: $primary;
             background-color: $light;
             font-style: italic;
             border-radius: $radius_small;
+            text-transform: uppercase;
         }
     }
 

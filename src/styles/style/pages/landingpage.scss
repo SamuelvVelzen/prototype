@@ -1,13 +1,12 @@
 #landingpage {
     #introduction {
-        height: 100vh;
+        min-height: 100vh;
 
         &.container {
             display: flex;
             flex-direction: column;
 
             .introduction {
-                background-color: $grey;
                 border-radius: $radius;
                 padding: $padding_default;
                 margin-top: auto;
@@ -47,13 +46,19 @@
 
         .summary {
             background-color: $secondary;
-            padding: $padding_default;
+
+            padding: $container_default;
+            padding-top: $space5;
+            padding-bottom: $space5;
+
             margin-bottom: $space5;
+            border-radius: $radius;
 
             .bulletpoints {
                 padding-left: $space3;
                 &_point {
                     font-size: 22px;
+                    margin-bottom: $space2;
                 }
             }
         }
@@ -64,6 +69,7 @@
             padding-bottom: $space5;
             margin-bottom: $space5;
             background-color: $secondary;
+            border-radius: $radius;
 
             .close {
                 position: absolute;
@@ -75,6 +81,14 @@
 
                 background: url(./../images/icons/remove.svg);
                 background-size: contain;
+            }
+
+            .btn:first-child {
+                margin-right: 2%;
+            }
+
+            .btn:last-child {
+                margin-left: 2%;
             }
         }
     }

@@ -3,17 +3,27 @@
     align-items: center;
 
     margin: $space3 0;
+    font-weight: bold;
 
     & > * {
         margin-right: $space3;
     }
 
-    &_writer {
-        text-decoration: underline;
-        text-decoration-color: $yellow;
+    &_image {
+        border-radius: 50%;
+        height: 80px;
+        width: 115px;
 
+        background-image: url('./../images/logos/concrete010grouppicture.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &_writer {
+        line-height: initial;
         &::after {
             content: '';
+            display: block;
             width: 100%;
             height: 4px;
             background-color: $yellow;
