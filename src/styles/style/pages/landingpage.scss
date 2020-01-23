@@ -9,7 +9,7 @@
             .introduction {
                 background-color: $grey;
                 border-radius: $radius;
-                padding: $default_padding;
+                padding: $padding_default;
                 margin-top: auto;
 
                 &_text {
@@ -47,7 +47,7 @@
 
         .summary {
             background-color: $secondary;
-            padding: $default_padding;
+            padding: $padding_default;
             margin-bottom: $space5;
 
             .bulletpoints {
