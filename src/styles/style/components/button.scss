@@ -1,0 +1,57 @@
+.btn {
+    text-decoration: none;
+    border-radius: $radius;
+    padding: $padding_default;
+
+    font-family: $font_title;
+    font-weight: bold;
+    font-style: italic;
+
+    text-align: center;
+    width: fit-content;
+
+    margin-bottom: $space5;
+
+    &_group {
+        display: flex;
+        justify-content: center;
+        margin: $space5;
+        margin-bottom: 0;
+
+        & > * {
+            width: fit-content;
+        }
+
+        // &:nth-last-child(1) {
+        //     background-color: red;
+        // }
+    }
+
+    &_action {
+        color: $light;
+        background-color: $primary;
+        font-style: italic;
+        border-radius: $radius_small;
+        text-transform: uppercase;
+
+        &_outline {
+            color: $primary;
+            background-color: $light;
+            font-style: italic;
+            border-radius: $radius_small;
+            text-transform: uppercase;
+        }
+    }
+
+    &_primary {
+        color: $primary;
+        background-color: $yellow;
+        font-size: 50px;
+
+        &_outline {
+            color: $primary;
+            background-color: $light;
+            border: 1px solid $primary;
+        }
+    }
+}
