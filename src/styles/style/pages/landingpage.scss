@@ -1,0 +1,81 @@
+#landingpage {
+    #introduction {
+        height: 100vh;
+
+        &.container {
+            display: flex;
+            flex-direction: column;
+
+            .introduction {
+                background-color: $grey;
+                border-radius: $radius;
+                padding: $default_padding;
+                margin-top: auto;
+
+                &_text {
+                    .text {
+                        font-weight: bold;
+                    }
+                }
+
+                &_image {
+                    .info {
+                        height: 50px;
+                        width: 50px;
+
+                        border-radius: 100%;
+                    }
+                }
+            }
+
+            .btn {
+                margin-top: auto;
+            }
+        }
+    }
+
+    #summary {
+        display: flex;
+        flex-direction: column;
+
+        .img {
+            &.heroImage {
+                height: 50vh;
+                margin-bottom: $space5;
+            }
+        }
+
+        .summary {
+            background-color: $secondary;
+            padding: $default_padding;
+            margin-bottom: $space5;
+
+            .bulletpoints {
+                padding-left: $space3;
+                &_point {
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .promotion {
+            padding: $container_default;
+            padding-top: $space5;
+            padding-bottom: $space5;
+            margin-bottom: $space5;
+            background-color: $secondary;
+
+            .close {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+
+                height: 25px;
+                width: 25px;
+
+                background: url(./../images/icons/remove.svg);
+                background-size: contain;
+            }
+        }
+    }
+}
