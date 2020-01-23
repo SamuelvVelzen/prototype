@@ -1,7 +1,9 @@
 .nav {
     width: 100%;
-
     border-bottom: 1px solid $grey;
+    position: fixed;
+    top: 0;
+    z-index: 10;
 
     &_extrabalk {
         display: flex;
@@ -16,6 +18,7 @@
         &_text {
             color: $light;
             align-self: center;
+            color: $light;
 
             &:first-of-type {
                 font-weight: bold;
@@ -29,7 +32,11 @@
         flex-direction: row;
         position: relative;
 
-        padding: $space1 $space8;
+        padding: $container_large;
+        padding-top: $space1;
+        padding-bottom: $space1;
+
+        background-color: $light;
 
         &_logo {
             position: absolute;
@@ -93,8 +100,10 @@
                 height: 25px;
                 width: 25px;
 
-                background-image: url('./../../images/icons/');
-                background-repeat: no-repeat;
+                // background: url('./../images/icons/search.svg');
+                vertical-align: sub;
+
+                fill: $primary;
             }
         }
     }
