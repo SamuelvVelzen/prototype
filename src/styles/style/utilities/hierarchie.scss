@@ -1,0 +1,46 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title {
+    font-family: $font_title;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.title {
+    font-size: 62px;
+    margin-bottom: $space2;
+
+    &_sub {
+        font-size: 26px;
+        color: #999;
+        margin-bottom: $space2;
+    }
+
+    &_small {
+        font-size: 22px;
+    }
+    &_big {
+    }
+}
+
+.subtitle,
+.introduction_text .text {
+    font-size: 26px;
+}
+
+li,
+ul {
+    font-size: 22px;
+}
+
+.info {
+    font-size: 14px;
+}
+
+p {
+    line-height: 34px;
+}
