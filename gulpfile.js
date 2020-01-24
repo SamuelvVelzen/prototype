@@ -7,7 +7,7 @@ var image = require('gulp-image');
 
 const paths = {
     html: {
-        src: 'src/*.html',
+        src: 'src/**/*.html',
         dest: 'dist/'
     },
     sass: {
