@@ -2,7 +2,7 @@ var storageComponent = (function(ui) {
     var _checkCompatible;
 
     _checkCompatible = function() {
-        if (typeof Storage !== 'undefined') {
+        if (typeof Storage == 'undefined') {
             // Sorry! No Web Storage support..
             if (
                 confirm(
@@ -12,7 +12,13 @@ var storageComponent = (function(ui) {
                 window.open('http://browsehappy.com/', '_blank');
             }
 
-            ui.uiStrings.notification;
+            document
+                .getElementById(ui.uiStrings.id.notification)
+                .classList.add('active');
+        } else {
+            document
+                .getElementById(ui.uiStrings.id.notification)
+                .classList.remove('active');
         }
     };
 
