@@ -1,4 +1,6 @@
 .btn {
+    display: block;
+
     text-decoration: none;
     border-radius: $radius;
     padding: $padding_default;
@@ -10,7 +12,11 @@
     text-align: center;
     width: fit-content;
 
-    margin-bottom: $space5;
+    &.disabled {
+        cursor: not-allowed;
+        color: $light;
+        background-color: $grey;
+    }
 
     &_group {
         display: flex;
@@ -21,10 +27,6 @@
         & > * {
             width: fit-content;
         }
-
-        // &:nth-last-child(1) {
-        //     background-color: red;
-        // }
     }
 
     &_action {
@@ -47,6 +49,10 @@
         color: $primary;
         background-color: $yellow;
         font-size: 50px;
+
+        &.small {
+            font-size: 32px;
+        }
 
         &_outline {
             color: $primary;
