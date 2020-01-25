@@ -3,9 +3,9 @@ var uiController = (function() {
         id: {
             notification: 'notification'
         }
-    }
+    };
 
     return {
-        uiStrings: uiStrings;
-    }
+        uiStrings: uiStrings
+    };
 })();
