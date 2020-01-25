@@ -24,7 +24,9 @@ const paths = {
         dest: 'dist/styles/images'
     },
     js: {
-        src: 'src/js/**/*.js',
+        src1: 'src/js/main.js',
+        src2: 'src/js/utilities/*.js',
+        src3: 'src/js/components/*.js',
         dest: 'dist/js',
         output: 'main.js'
     }
@@ -47,17 +49,24 @@ function styles() {
 
 function js() {
     return gulp
-        .src(paths.js.src)
+        .src([paths.js.src1, paths.js.src2, paths.js.src3])
         .pipe(concat(paths.js.output))
-        .pipe(gulp.dest(paths.js.dest));
+        .pipe(gulp.dest(paths.js.dest))
+        .pipe(livereload());
 }
 
 function html() {
-    return gulp.src(paths.html.src).pipe(gulp.dest(paths.html.dest));
+    return gulp
+        .src(paths.html.src)
+        .pipe(gulp.dest(paths.html.dest))
+        .pipe(livereload());
 }
 
 function images() {
-    return gulp.src(paths.images.src).pipe(gulp.dest(paths.images.dest));
+    return gulp
+        .src(paths.images.src)
+        .pipe(gulp.dest(paths.images.dest))
+        .pipe(livereload());
 }
 
 function buildImages() {
@@ -68,14 +77,19 @@ function buildImages() {
 }
 
 function fonts() {
-    return gulp.src(paths.fonts.src).pipe(gulp.dest(paths.fonts.dest));
+    return gulp
+        .src(paths.fonts.src)
+        .pipe(gulp.dest(paths.fonts.dest))
+        .pipe(livereload());
 }
 
 gulp.task('watch', function() {
     livereload.listen();
 
     gulp.watch(paths.sass.src, gulp.series(styles));
-    gulp.watch(paths.js.src, gulp.series(js));
+    gulp.watch(paths.js.src1, gulp.series(js));
+    gulp.watch(paths.js.src2, gulp.series(js));
+    gulp.watch(paths.js.src3, gulp.series(js));
     gulp.watch(paths.html.src, gulp.series(html));
 });
 
