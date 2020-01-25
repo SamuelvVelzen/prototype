@@ -1,6 +1,8 @@
 var uiController = (function() {
     var uiStrings = {
-        notification: ''
+        id: {
+            notification: 'notification'
+        }
     }
 
     return {
