@@ -52,6 +52,11 @@
             &_title {
                 z-index: 1;
                 order: 1;
+                display: none;
+
+                &.generating {
+                    display: block;
+                }
             }
 
             &_item {
@@ -69,6 +74,8 @@
                     margin-bottom: $space2;
 
                     .close {
+                        cursor: pointer;
+
                         position: absolute;
                         top: $space1;
                         right: 0;
