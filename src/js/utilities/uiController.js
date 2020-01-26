@@ -6,6 +6,9 @@ var uiController = (function() {
         class: {
             filter_item: 'filterbalk_container_item',
             info_item: 'infocard_inner_body_item'
+        },
+        style: {
+            order: 'flex_order'
         }
     };
 
