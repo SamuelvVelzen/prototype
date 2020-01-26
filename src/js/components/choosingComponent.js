@@ -1,6 +1,8 @@
 var choosing = (function(ui, storage) {
     var addEvents,
+        _controller,
         _subjectChoosing,
+        _removeSubject,
         _findParent,
         _toggleActiveClass,
         _updateInfoCard;
@@ -69,6 +71,21 @@ var choosing = (function(ui, storage) {
         }
     };
 
+    _removeSubject = function(event) {
+        var parent = _findParent(event.path, ui.uiStrings.class.info_item),
+            subject;
+
+        if (parent.classList.contains('house')) {
+            subject = 'house';
+        } else if (parent.classList.contains('moving')) {
+            subject = 'moving';
+        } else if (parent.classList.contains('development')) {
+            subject = 'development';
+        }
+
+        _controller(subject);
+    };
+
     _subjectChoosing = function(event) {
         var parent = _findParent(event.path, ui.uiStrings.class.filter_item),
             subject;
@@ -87,20 +104,61 @@ var choosing = (function(ui, storage) {
                 subject = '';
         }
 
+        _controller(subject);
+    };
+
+    _controller = function(subject) {
+        var title = document.getElementById(ui.uiStrings.id.generateTitle),
+            button = document.getElementById(ui.uiStrings.id.generateButton);
+
+        //add active state to filterbalk
         _toggleActiveClass(subject);
+
+        //check if item is in storage otherwise add
         storage.checkItem(subject);
 
+        //update infocard with the right order
         _updateInfoCard();
+
+        //check if empty storage so to hide generate and choosing subject
+        if (!storage.checkIsEmpty()) {
+            title.classList.add('generating');
+
+            button.classList.remove('disabled');
+            button.href = ui.uiStrings.pages.article;
+        } else {
+            title.classList.remove('generating');
+
+            button.classList.add('disabled');
+            button.href = ui.uiStrings.pages.article;
+        }
     };
 
     addEvents = function() {
         var itemArr = document.getElementsByClassName(
-            ui.uiStrings.class.filter_item
-        );
+                ui.uiStrings.class.filter_item
+            ),
+            closeArr = document.getElementsByClassName(
+                ui.uiStrings.class.close
+            ),
+            button = document.getElementById(ui.uiStrings.id.generateButton);
+
+        //prevent clicking if disabled
+        button.addEventListener('click', function(event) {
+            if (button.classList.contains('disabled')) {
+                event.preventDefault();
+            }
+        });
 
         for (let i = 0; i < itemArr.length; i++) {
             itemArr[i].addEventListener('click', function(event) {
                 _subjectChoosing(event);
+            });
+        }
+
+        for (let i = 0; i < closeArr.length; i++) {
+            closeArr[i].addEventListener('click', function(event) {
+                _removeSubject(event);
             });
         }
     };
