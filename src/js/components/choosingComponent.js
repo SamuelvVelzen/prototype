@@ -1,5 +1,9 @@
 var choosing = (function(ui, storage) {
-    var addEvents, _subjectChoosing, _findParent;
+    var addEvents,
+        _subjectChoosing,
+        _findParent,
+        _toggleActiveClass,
+        _updateInfoCard;
 
     _findParent = function(path, identifier) {
         for (let i = 0; i < path.length; i++) {
@@ -17,12 +21,52 @@ var choosing = (function(ui, storage) {
         el.classList.toggle('active');
     };
 
-    _toggleInfoCard = function(subject) {
-        var el = document.querySelector(
-            '.' + ui.uiStrings.class.info_item + '.' + subject
-        );
+    _updateInfoCard = function() {
+        var items = storage.getItems(),
+            itemsArr,
+            elArr;
 
-        el.classList.toggle('active');
+        if (!storage.checkIsEmpty()) {
+            itemsArr = items.split(',');
+            elArr = document.getElementsByClassName(
+                ui.uiStrings.class.info_item
+            );
+
+            for (let i = 0; i < elArr.length; i++) {
+                elArr[i].classList.remove(
+                    'flex_order_2',
+                    'flex_order_3',
+                    'flex_order_4',
+                    'active'
+                );
+            }
+
+            itemsArr.forEach((element, key) => {
+                var el = document.querySelector(
+                        '.' + ui.uiStrings.class.info_item + '.' + element
+                    ),
+                    number = key + 2;
+
+                el.classList.add(
+                    ui.uiStrings.style.order + '_' + number,
+                    'active'
+                );
+            });
+        } else {
+            //remove all active classes
+            var elArr = document.getElementsByClassName(
+                ui.uiStrings.class.info_item
+            );
+
+            for (let i = 0; i < elArr.length; i++) {
+                elArr[i].classList.remove(
+                    'flex_order_2',
+                    'flex_order_3',
+                    'flex_order_4',
+                    'active'
+                );
+            }
+        }
     };
 
     _subjectChoosing = function(event) {
@@ -44,7 +88,9 @@ var choosing = (function(ui, storage) {
         }
 
         _toggleActiveClass(subject);
-        _toggleInfoCard(subject);
+        storage.checkItem(subject);
+
+        _updateInfoCard();
     };
 
     addEvents = function() {
@@ -66,4 +112,4 @@ var choosing = (function(ui, storage) {
 
         subjects: _subjectChoosing
     };
-})(uiController, localStorage);
+})(uiController, storageComponent);
