@@ -38,7 +38,9 @@
         &_body {
             overflow-x: scroll;
 
-            margin: $space2;
+            margin: $space2 0;
+            padding: 0 $space2;
+
             position: absolute;
             top: 270px;
 
@@ -49,12 +51,18 @@
 
             &_title {
                 z-index: 1;
-                // order: 1;
+                order: 1;
             }
 
             &_item {
+                display: none;
                 position: relative;
                 padding: $space3 0;
+                border-bottom: 4px solid $grey;
+
+                &.active {
+                    display: block;
+                }
 
                 &_header {
                     display: flex;
@@ -108,10 +116,6 @@
                     .icon {
                         background-image: url(./../images/icons/growth.svg);
                     }
-                }
-
-                &:not(:last-child) {
-                    border-bottom: 4px solid $grey;
                 }
             }
         }
