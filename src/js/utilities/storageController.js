@@ -6,6 +6,7 @@ var storageComponent = (function(ui) {
         _setItems,
         _addItem,
         _getItems,
+        _removeItem,
         _checkItem,
         _checkIsEmpty;
 
@@ -46,6 +47,29 @@ var storageComponent = (function(ui) {
             }
 
             return '';
+        }
+    };
+
+    _removeItem = function(val) {
+        var items = _getItems(),
+            result = items,
+            itemsArr;
+
+        if (working) {
+            if (!_checkIsEmpty()) {
+                itemsArr = items.split(',');
+
+                if (itemsArr.includes(val)) {
+                    for (var i = 0; i < itemsArr.length; i++) {
+                        if (itemsArr[i] == val) {
+                            itemsArr.splice(i, 1);
+                            i--;
+                        }
+                    }
+
+                    _setItems(itemsArr.toString());
+                }
+            }
         }
     };
 
@@ -115,6 +139,7 @@ var storageComponent = (function(ui) {
             sessionStorage.removeItem(key);
         },
         getItems: _getItems,
+        removeItem: _removeItem,
         checkItem: _checkItem,
         checkIsEmpty: _checkIsEmpty
     };
