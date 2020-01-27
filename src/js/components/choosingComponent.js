@@ -1,4 +1,4 @@
-var choosing = (function(ui, storage) {
+var choosingComponent = (function(ui, article, storage) {
     var addEvents,
         checkFilters,
         _controller,
@@ -16,12 +16,28 @@ var choosing = (function(ui, storage) {
         }
     };
 
-    _toggleActiveClass = function(subject) {
-        var el = document.querySelector(
-            '.' + ui.uiStrings.class.filter_item + '.' + subject
-        );
+    _toggleActiveClass = function() {
+        var items = storage.getItems(),
+            itemsArr,
+            filterArr = document.getElementsByClassName(
+                ui.uiStrings.class.filter_item
+            );
 
-        el.classList.toggle('active');
+        for (let i = 0; i < filterArr.length; i++) {
+            filterArr[i].classList.remove('active');
+        }
+
+        if (!storage.checkIsEmpty()) {
+            itemsArr = items.split(',');
+
+            itemsArr.forEach(element => {
+                var el = document.querySelector(
+                    '.' + ui.uiStrings.class.filter_item + '.' + element
+                );
+
+                el.classList.add('active');
+            });
+        }
     };
 
     _updateInfoCard = function() {
@@ -29,20 +45,20 @@ var choosing = (function(ui, storage) {
             itemsArr,
             elArr;
 
+        //remove all active classes
+        elArr = document.getElementsByClassName(ui.uiStrings.class.info_item);
+
+        for (let i = 0; i < elArr.length; i++) {
+            elArr[i].classList.remove(
+                'flex_order_2',
+                'flex_order_3',
+                'flex_order_4',
+                'active'
+            );
+        }
+
         if (!storage.checkIsEmpty()) {
             itemsArr = items.split(',');
-            elArr = document.getElementsByClassName(
-                ui.uiStrings.class.info_item
-            );
-
-            for (let i = 0; i < elArr.length; i++) {
-                elArr[i].classList.remove(
-                    'flex_order_2',
-                    'flex_order_3',
-                    'flex_order_4',
-                    'active'
-                );
-            }
 
             itemsArr.forEach((element, key) => {
                 var el = document.querySelector(
@@ -55,20 +71,6 @@ var choosing = (function(ui, storage) {
                     'active'
                 );
             });
-        } else {
-            //remove all active classes
-            var elArr = document.getElementsByClassName(
-                ui.uiStrings.class.info_item
-            );
-
-            for (let i = 0; i < elArr.length; i++) {
-                elArr[i].classList.remove(
-                    'flex_order_2',
-                    'flex_order_3',
-                    'flex_order_4',
-                    'active'
-                );
-            }
         }
     };
 
@@ -112,11 +114,11 @@ var choosing = (function(ui, storage) {
         var title = document.getElementById(ui.uiStrings.id.generateTitle),
             button = document.getElementById(ui.uiStrings.id.generateButton);
 
-        //add active state to filterbalk
-        _toggleActiveClass(subject);
-
         //check if item is in storage otherwise add
         storage.checkItem(subject);
+
+        //add active state to filterbalk
+        _toggleActiveClass();
 
         //update infocard with the right order for the page subjects
         if (page == 'subjects') {
@@ -158,6 +160,8 @@ var choosing = (function(ui, storage) {
         for (let i = 0; i < itemArr.length; i++) {
             itemArr[i].addEventListener('click', function(event) {
                 _subjectChoosing(event);
+                article.checkContent();
+                article.resetConclusion();
             });
         }
 
@@ -173,11 +177,26 @@ var choosing = (function(ui, storage) {
             itemsArr;
 
         if (!storage.checkIsEmpty()) {
-            itemsArr = items.split(',');
+            //add active state to filterbalk
+            _toggleActiveClass();
 
-            itemsArr.forEach(element => {
-                _controller(element);
-            });
+            //update infocard with the right order for the page subjects
+            if (page == 'subjects') {
+                _updateInfoCard();
+
+                //check if empty storage so to hide generate and choosing subject
+                if (!storage.checkIsEmpty()) {
+                    title.classList.add('generating');
+
+                    button.classList.remove('disabled');
+                    button.href = ui.uiStrings.pages.article;
+                } else {
+                    title.classList.remove('generating');
+
+                    button.classList.add('disabled');
+                    button.href = ui.uiStrings.pages.article;
+                }
+            }
         }
     };
 
@@ -190,4 +209,4 @@ var choosing = (function(ui, storage) {
 
         subjects: _subjectChoosing
     };
-})(uiController, storageController);
+})(uiController, articleComponent, storageController);
