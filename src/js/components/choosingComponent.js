@@ -190,4 +190,4 @@ var choosing = (function(ui, storage) {
 
         subjects: _subjectChoosing
     };
-})(uiController, storageComponent);
+})(uiController, storageController);

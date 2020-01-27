@@ -1,4 +1,4 @@
-var storageComponent = (function(ui) {
+var storageController = (function(ui) {
     var key = 'filterstorage',
         working = false;
 

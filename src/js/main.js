@@ -1,4 +1,4 @@
 window.onload = function() {
-    storageComponent.init();
+    storageController.init();
     choosing.init();
 };
