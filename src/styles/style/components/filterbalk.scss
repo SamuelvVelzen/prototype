@@ -14,35 +14,6 @@
 
     z-index: 10;
 
-    #notification {
-        position: absolute;
-        width: 100%;
-
-        background-color: red;
-
-        padding: $padding_default;
-
-        display: none;
-
-        &.active {
-            display: block;
-        }
-
-        p {
-            text-align: center;
-            color: $light;
-
-            strong {
-                color: $light;
-            }
-
-            a {
-                color: $light;
-                font-weight: bold;
-            }
-        }
-    }
-
     &_image {
         grid-row: 1;
         grid-column: 1/2;
