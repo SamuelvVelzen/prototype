@@ -12,7 +12,7 @@
     <body>
         <section id="article">
             <div class="filterbalk">
-                <div id="notification">
+                <div id="notification" class="notification">
                     <p>
                         Je gebruikt een <strong>verouderde</strong> browser.
                         Voor een betere ervaring moet je
@@ -251,7 +251,7 @@
                 </div>
             </div>
 
-            <article id="house">
+            <article id="house" class="content">
                 <div class="split">
                     <img src="" alt="" class="split_left nobounds" />
                     <div class="split_right large">
@@ -514,7 +514,7 @@
                 </div>
             </article>
 
-            <article id="moving">
+            <article id="moving" class="content">
                 <img src="" alt="" class="large" />
 
                 <div class="container">
@@ -704,7 +704,7 @@
                 </div>
             </article>
 
-            <article id="development">
+            <article id="development" class="content">
                 <div class="split">
                     <div class="split_left large">
                         <h1 class="title">
@@ -904,16 +904,41 @@
             </article>
 
             <article id="conclusion">
-                <button id="conclusion" class="btn btn_primary center">
+                <button id="conclusionButton" class="btn btn_primary center">
                     Genereer conclusie
                 </button>
+
+                <div id="hiddenContent" class=" container">
+                    <div id="animation">
+                        <span class="townbehind spanImage"></span>
+                        <span class="car spanImage"></span>
+                        <span class="townfront spanImage"></span>
+                    </div>
+
+                    <div id="noConclusion" class="notification">
+                        <p>
+                            Voor de gekozen combinatie is helaas nog geen
+                            conclusie geschreven door Aisha en Roos. Probeer
+                            opnieuw (probeer
+                            <b>Verhuisbewegingen</b> en
+                            <b>Persoonlijke ontwikkeling</b>)
+                        </p>
+                    </div>
+
+                    <h2 id="title_conclusion" class="title">
+                        Conclusie
+                    </h2>
+
+                    <span id="title_sub_conclusion" class="title_sub"> </span>
+                    <div id="conclusion_text"></div>
+                </div>
             </article>
         </section>
 
         <script>
-            var page = 'article'
+            var page = 'article';
         </script>
-        
+
         <script src="./../js/main.js"></script>
     </body>
 </html>
