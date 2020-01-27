@@ -1,5 +1,6 @@
 var choosing = (function(ui, storage) {
     var addEvents,
+        checkFilters,
         _controller,
         _subjectChoosing,
         _removeSubject,
@@ -117,20 +118,22 @@ var choosing = (function(ui, storage) {
         //check if item is in storage otherwise add
         storage.checkItem(subject);
 
-        //update infocard with the right order
-        _updateInfoCard();
+        //update infocard with the right order for the page subjects
+        if (page == 'subjects') {
+            _updateInfoCard();
 
-        //check if empty storage so to hide generate and choosing subject
-        if (!storage.checkIsEmpty()) {
-            title.classList.add('generating');
+            //check if empty storage so to hide generate and choosing subject
+            if (!storage.checkIsEmpty()) {
+                title.classList.add('generating');
 
-            button.classList.remove('disabled');
-            button.href = ui.uiStrings.pages.article;
-        } else {
-            title.classList.remove('generating');
+                button.classList.remove('disabled');
+                button.href = ui.uiStrings.pages.article;
+            } else {
+                title.classList.remove('generating');
 
-            button.classList.add('disabled');
-            button.href = ui.uiStrings.pages.article;
+                button.classList.add('disabled');
+                button.href = ui.uiStrings.pages.article;
+            }
         }
     };
 
@@ -143,12 +146,14 @@ var choosing = (function(ui, storage) {
             ),
             button = document.getElementById(ui.uiStrings.id.generateButton);
 
-        //prevent clicking if disabled
-        button.addEventListener('click', function(event) {
-            if (button.classList.contains('disabled')) {
-                event.preventDefault();
-            }
-        });
+        if (button) {
+            //prevent clicking if disabled
+            button.addEventListener('click', function(event) {
+                if (button.classList.contains('disabled')) {
+                    event.preventDefault();
+                }
+            });
+        }
 
         for (let i = 0; i < itemArr.length; i++) {
             itemArr[i].addEventListener('click', function(event) {
@@ -163,9 +168,24 @@ var choosing = (function(ui, storage) {
         }
     };
 
+    checkFilters = function() {
+        var items = storage.getItems(),
+            itemsArr;
+
+        if (!storage.checkIsEmpty()) {
+            itemsArr = items.split(',');
+
+            itemsArr.forEach(element => {
+                _controller(element);
+            });
+        }
+    };
+
     return {
         init: function() {
             addEvents();
+
+            checkFilters();
         },
 
         subjects: _subjectChoosing
