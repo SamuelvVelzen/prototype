@@ -48,7 +48,7 @@ html {
     margin: $container_default;
     position: relative;
 
-    &.first {
+    &:first-of-type {
         padding-top: $nav_height + 46px;
     }
 }
