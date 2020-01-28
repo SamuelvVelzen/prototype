@@ -12,29 +12,20 @@ var articleComponent = (function(ui, storage, scrolling) {
             articleArr = document.getElementsByClassName(
                 ui.uiStrings.class.content
             ),
+            loading = document.getElementById(ui.uiStrings.id.loading),
             itemsArr;
 
         for (let i = 0; i < articleArr.length; i++) {
-            articleArr[i].classList.remove(
-                'flex_order_2',
-                'flex_order_3',
-                'flex_order_4',
-                'active'
-            );
+            articleArr[i].classList.remove('active');
         }
 
         if (!storage.checkIsEmpty()) {
             itemsArr = items.split(',');
 
-            for (let i = 0; i < itemsArr.length; i++) {
-                var number = i + 2,
-                    el = document.getElementById(itemsArr[i]);
+            el = document.getElementById(itemsArr[0]);
+            el.classList.add('active');
 
-                el.classList.add(
-                    ui.uiStrings.style.order + '_' + number,
-                    'active'
-                );
-            }
+            loading.classList.add('loaded');
         }
     };
 
