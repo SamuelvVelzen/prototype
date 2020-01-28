@@ -1,0 +1,85 @@
+.filterbalk {
+    background-color: $light;
+    width: 100%;
+    padding: $container_default;
+    padding-left: $space2;
+    padding-top: $space1;
+    padding-bottom: $space1;
+    box-shadow: 0px 5px 30px 0px $dark;
+
+    position: absolute;
+    top: 0;
+
+    display: grid;
+
+    z-index: 10;
+
+    &_filler {
+        display: block;
+        height: 100px;
+        width: 100%;
+        visibility: hidden;
+        order: 11;
+        background-color: blue;
+    }
+
+    &_image {
+        grid-row: 1;
+        grid-column: 1/2;
+
+        width: 155px;
+        height: 90px;
+
+        background-image: url('./../images/logos/versbeton.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+    }
+
+    &_title {
+        grid-row: 1;
+        grid-column: 2/10;
+        text-align: center;
+
+        font-family: $font_title;
+        font-size: 23px;
+        font-weight: bold;
+    }
+
+    &_container {
+        grid-row: 1;
+        grid-column: 2/10;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        &_item {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-end;
+            cursor: pointer;
+
+            &.active {
+                .filterbalk_container_item_image g {
+                    fill: $primary;
+                }
+
+                .filterbalk_container_item_text {
+                    font-weight: bold;
+                    color: $primary;
+                }
+            }
+
+            &_image {
+                margin: 0 auto;
+                height: 40px;
+                width: 40px;
+            }
+
+            &_text {
+                line-height: initial;
+            }
+        }
+    }
+}

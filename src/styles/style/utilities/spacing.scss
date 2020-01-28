@@ -1,0 +1,32 @@
+.split {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $space5;
+
+    &_left,
+    &_right {
+        width: 38%;
+
+        &.large {
+            width: 58%;
+        }
+    }
+
+    &_left {
+        margin: $container_default;
+        margin-right: 4%;
+
+        &.nobounds {
+            margin-left: 0;
+        }
+    }
+
+    &_right {
+        margin: $container_default;
+        margin-left: 0;
+
+        &.nobounds {
+            margin-right: 0;
+        }
+    }
+}

@@ -1,0 +1,87 @@
+@import './utilities/variables.scss';
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: 2px;
+    font-family: $font_body;
+    color: $dark;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.right {
+    margin-left: auto;
+    text-align: right;
+}
+
+.left {
+    margin-right: auto;
+    text-align: left;
+}
+
+.text {
+    font-size: 23px;
+}
+
+.spanImage {
+    display: block;
+}
+
+.img {
+    background-color: $dark;
+    display: block;
+}
+
+.large {
+    width: 100%;
+}
+
+.container {
+    margin: $container_default;
+    position: relative;
+
+    &:first-of-type {
+        padding-top: $nav_height + 46px;
+    }
+}
+
+.link {
+    font-size: 23px;
+    color: $dark;
+    text-decoration: underline;
+    display: block;
+}
+
+.flex_order {
+    &_1 {
+        order: 1;
+    }
+    &_2 {
+        order: 2;
+    }
+    &_3 {
+        order: 3;
+    }
+    &_4 {
+        order: 4;
+    }
+    &_5 {
+        order: 5;
+    }
+}

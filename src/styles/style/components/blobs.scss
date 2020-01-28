@@ -1,0 +1,14 @@
+.underline {
+    position: absolute;
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: $dark;
+    margin-top: -9px;
+    margin-left: 5px;
+    z-index: -1;
+
+    &.yellow {
+        background-color: $yellow;
+    }
+}
