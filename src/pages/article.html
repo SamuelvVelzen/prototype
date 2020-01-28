@@ -252,32 +252,42 @@
             </div>
 
             <div class="clickable_links">
-                <a href="" class="btn btn_primary_link small" id="prev"
-                    >Vorige</a
+                <a class="btn btn_primary_link small nav_buttons" id="prev" onclick="navComponent.goNav('prev');"
+                    >
+
+                    Vorige
+                    
+                    </a
                 >
 
-                <button class="btn btn_primary_outline small" onclick="">
+                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
                     Inleiding
                 </button>
 
-                <button class="btn btn_primary_outline small" onclick="">
+                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
                     Data scenario
                 </button>
 
-                <button class="btn btn_primary_outline small" onclick="">
+                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
                     Interview
                 </button>
 
-                <button class="btn btn_primary_outline small" onclick="">
+                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
                     Expert
                 </button>
 
-                <a href="" class="btn btn_primary_link small" id="next"
-                    >Volgende</a
+                <a class="btn btn_primary_link small nav_buttons" id="next" onclick="navComponent.goNav('forward');"
+                    >
+
+                    Volgende
+
+                    </a
                 >
             </div>
 
-            <div class="content">
+            <div id="loader" class="loader"></div>
+
+            <div class="content_container">
                 <article id="house" class="content">
                     <div class="split">
                         <img
@@ -968,7 +978,7 @@
                         </div>
                     </div>
                 </article>
-            </div>
+            </div> 
 
             <article id="conclusion">
                 <button id="conclusionButton" class="btn btn_primary center">
@@ -1068,6 +1078,8 @@
                     </div>
                 </div>
             </article>
+
+            <span class="filterbalk_filler">hoi</div>
         </section>
 
         <script>
@@ -1075,6 +1087,6 @@
         </script>
 
         <script src="./../js/main.js"></script>
-        <script src="https://public.flourish.studio/resources/embed.js"></script>
+        <!-- <script src="https://public.flourish.studio/resources/embed.js"></script> -->
     </body>
 </html>
