@@ -4,11 +4,17 @@ var scrollingController = (function() {
     _scrollingBottom = function(el) {
         var bottom = el.scrollHeight;
 
-        window.scrollTo(0, bottom);
+        window.scrollTo({
+            top: bottom,
+            behavior: 'smooth'
+        });
     };
 
     _scrollingTop = function(el) {
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 
     return {
