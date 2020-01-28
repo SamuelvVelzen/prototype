@@ -160,8 +160,11 @@ var choosingComponent = (function(ui, article, storage) {
         for (let i = 0; i < itemArr.length; i++) {
             itemArr[i].addEventListener('click', function(event) {
                 _subjectChoosing(event);
-                article.checkContent();
-                article.resetConclusion();
+
+                if (page == 'article') {
+                    article.checkContent();
+                    article.resetConclusion();
+                }
             });
         }
 
@@ -174,7 +177,9 @@ var choosingComponent = (function(ui, article, storage) {
 
     checkFilters = function() {
         var items = storage.getItems(),
-            itemsArr;
+            itemsArr,
+            title,
+            button;
 
         if (!storage.checkIsEmpty()) {
             //add active state to filterbalk
@@ -186,6 +191,13 @@ var choosingComponent = (function(ui, article, storage) {
 
                 //check if empty storage so to hide generate and choosing subject
                 if (!storage.checkIsEmpty()) {
+                    title = document.getElementById(
+                        ui.uiStrings.id.generateTitle
+                    );
+                    button = document.getElementById(
+                        ui.uiStrings.id.generateButton
+                    );
+
                     title.classList.add('generating');
 
                     button.classList.remove('disabled');
@@ -199,6 +211,8 @@ var choosingComponent = (function(ui, article, storage) {
             }
         }
     };
+
+    window.subjects = _subjectChoosing;
 
     return {
         init: function() {
