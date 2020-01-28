@@ -9,14 +9,18 @@ var uiController = (function() {
             hiddenContent: 'hiddenContent',
             animation: 'animation',
             noconclusion: 'noConclusion',
+            conclusionContent: 'conclusion_content',
             titleConclusion: 'title_conclusion',
-            titleSubConclusion: 'title_sub_conclusion'
+            titleSubConclusion: 'title_sub_conclusion',
+            readTitle: 'readmore',
+            readCard: '_card'
         },
         class: {
             filter_item: 'filterbalk_container_item',
             info_item: 'infocard_inner_body_item',
             close: 'close',
-            content: 'content'
+            content: 'content',
+            cards: 'card'
         },
         style: {
             order: 'flex_order'
