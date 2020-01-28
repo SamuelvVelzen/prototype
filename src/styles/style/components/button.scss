@@ -64,6 +64,21 @@
             color: $primary;
             background-color: $light;
             border: 1px solid $primary;
+
+            &.small {
+                font-size: 18px;
+            }
+
+            &:hover {
+                color: $light;
+                background-color: $primary;
+            }
+        }
+
+        &_link {
+            background-color: $light;
+            text-decoration: underline;
+            font-size: 14px;
         }
     }
 }
