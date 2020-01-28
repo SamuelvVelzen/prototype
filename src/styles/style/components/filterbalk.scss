@@ -14,6 +14,15 @@
 
     z-index: 10;
 
+    &_filler {
+        display: block;
+        height: 100px;
+        width: 100%;
+        visibility: hidden;
+        order: 11;
+        background-color: blue;
+    }
+
     &_image {
         grid-row: 1;
         grid-column: 1/2;
