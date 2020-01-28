@@ -15,10 +15,41 @@
                 src="./../styles/images/content/subjects/mapcrooswijk.png"
                 alt=""
                 class="map"
+                usemap="#clickable_map"
             />
 
+            <map name="clickable_map">
+                <area
+                    target=""
+                    alt="moving"
+                    title="moving"
+                    coords="0, 0, 100, 100"
+                    shape="square"
+                    onclick="console.log('hoi')"
+                    href="www.google.com"
+                />
+                <area
+                    target=""
+                    alt="house"
+                    title="house"
+                    coords="1039,1258,1060,1201,1063,1151,1051,1106,935,1103,935,1083,914,1089,917,1109,879,1154,893,1231"
+                    shape="poly"
+                    onclick="console.log('hoi')"
+                    href="www.google.com"
+                />
+                <area
+                    target=""
+                    alt="development"
+                    title="development"
+                    coords="810,1720,1181,1640,1187,1528,1083,1513,763,1560,763,1670"
+                    shape="poly"
+                    onclick="console.log('hoi')"
+                    href="www.google.com"
+                />
+            </map>
+
             <div class="filterbalk">
-                <div id="notification">
+                <div id="notification" class="notification">
                     <p>
                         Je gebruikt een <strong>verouderde</strong> browser.
                         Voor een betere ervaring moet je
@@ -351,6 +382,10 @@
             </div>
             <!-- <div class="flourish-embed" data-src="visualisation/1274001"></div><script src="https://public.flourish.studio/resources/embed.js"></script> -->
         </section>
+
+        <script>
+            var page = 'subjects';
+        </script>
 
         <script src="./../js/main.js"></script>
     </body>

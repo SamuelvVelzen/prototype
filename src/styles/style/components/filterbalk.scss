@@ -5,6 +5,7 @@
     padding-left: $space2;
     padding-top: $space1;
     padding-bottom: $space1;
+    box-shadow: 0px 5px 30px 0px $dark;
 
     position: absolute;
     top: 0;
@@ -12,35 +13,6 @@
     display: grid;
 
     z-index: 10;
-
-    #notification {
-        position: absolute;
-        width: 100%;
-
-        background-color: red;
-
-        padding: $padding_default;
-
-        display: none;
-
-        &.active {
-            display: block;
-        }
-
-        p {
-            text-align: center;
-            color: $light;
-
-            strong {
-                color: $light;
-            }
-
-            a {
-                color: $light;
-                font-weight: bold;
-            }
-        }
-    }
 
     &_image {
         grid-row: 1;

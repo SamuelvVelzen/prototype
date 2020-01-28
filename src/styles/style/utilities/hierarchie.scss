@@ -19,10 +19,12 @@ h6,
         font-size: 26px;
         color: #999;
         margin-bottom: $space2;
+        display: block;
     }
 
     &_small {
         font-size: 22px;
+        display: inline-block;
     }
     &_big {
     }
@@ -30,6 +32,10 @@ h6,
 
 .introduction_text .text {
     font-size: 26px;
+}
+
+.introduction {
+    font-weight: bold;
 }
 
 li,

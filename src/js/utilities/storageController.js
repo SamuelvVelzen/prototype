@@ -1,4 +1,4 @@
-var storageComponent = (function(ui) {
+var storageController = (function(ui) {
     var key = 'filterstorage',
         working = false;
 
@@ -134,9 +134,6 @@ var storageComponent = (function(ui) {
     return {
         init: function() {
             _checkCompatible();
-
-            //temp
-            sessionStorage.removeItem(key);
         },
         getItems: _getItems,
         removeItem: _removeItem,

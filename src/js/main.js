@@ -1,4 +1,5 @@
 window.onload = function() {
-    storageComponent.init();
-    choosing.init();
+    storageController.init();
+    articleComponent.init();
+    choosingComponent.init();
 };

@@ -1,9 +1,13 @@
 .btn {
     display: block;
+    cursor: pointer;
 
     text-decoration: none;
     border-radius: $radius;
     padding: $padding_default;
+
+    border: none;
+    outline: none;
 
     font-family: $font_title;
     font-weight: bold;
@@ -11,6 +15,8 @@
 
     text-align: center;
     width: fit-content;
+
+    margin-bottom: $space2;
 
     &.disabled {
         cursor: not-allowed;
@@ -58,6 +64,21 @@
             color: $primary;
             background-color: $light;
             border: 1px solid $primary;
+
+            &.small {
+                font-size: 18px;
+            }
+
+            &:hover {
+                color: $light;
+                background-color: $primary;
+            }
+        }
+
+        &_link {
+            background-color: $light;
+            text-decoration: underline;
+            font-size: 14px;
         }
     }
 }
