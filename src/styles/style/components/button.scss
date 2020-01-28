@@ -79,6 +79,11 @@
             background-color: $light;
             text-decoration: underline;
             font-size: 14px;
+
+            &.disabled {
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
         }
     }
 }

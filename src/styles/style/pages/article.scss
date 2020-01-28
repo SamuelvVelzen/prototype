@@ -52,14 +52,37 @@
         margin-bottom: $space5;
     }
 
-    #house,
-    #moving,
-    #development {
-        display: none;
-        padding-top: $nav_height + 46px;
+    .content_container {
+        #house,
+        #moving,
+        #development {
+            width: 100vw;
+            display: none;
+            padding-top: $nav_height + 46px;
 
-        &.active {
-            display: block;
+            &.active {
+                display: block;
+
+                &.slide_out_left {
+                    animation: fade_out_left 1s ease-out;
+                    animation-fill-mode: forwards;
+                }
+
+                &.slide_out_right {
+                    animation: fade_out_right 1s ease-out;
+                    animation-fill-mode: forwards;
+                }
+
+                &.slide_in_left {
+                    animation: fade_in_left 1s ease-out;
+                    animation-fill-mode: forwards;
+                }
+
+                &.slide_in_right {
+                    animation: fade_in_right 1s ease-out;
+                    animation-fill-mode: forwards;
+                }
+            }
         }
     }
 
@@ -160,5 +183,46 @@
 
     100% {
         transform: translateX(100%);
+    }
+}
+
+@keyframes fade_out_left {
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+}
+@keyframes fade_out_right {
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+}
+@keyframes fade_in_left {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+@keyframes fade_in_right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
     }
 }
