@@ -3,7 +3,9 @@ var articleComponent = (function(ui, storage) {
         _checkContent,
         _showContent,
         _generatingConclusion,
-        _resetingConclusion;
+        _generatingReadMore,
+        _resetingConclusion,
+        _generatingLinks;
 
     _checkContent = function() {
         var items = storage.getItems(),
@@ -45,9 +47,10 @@ var articleComponent = (function(ui, storage) {
     _generatingConclusion = function() {
         var items = storage.getItems(),
             elTitle = document.getElementById(ui.uiStrings.id.titleConclusion),
-            elSub = document.getElementById(ui.uiStrings.id.titleSubConclusion);
-        console.log(elTitle);
-        console.log(elSub);
+            elSub = document.getElementById(ui.uiStrings.id.titleSubConclusion),
+            conclusionContent = document.getElementById(
+                ui.uiStrings.id.conclusionContent
+            );
 
         if (!storage.checkIsEmpty()) {
             var stringItems = '',
@@ -96,19 +99,15 @@ var articleComponent = (function(ui, storage) {
 
                 elSub.innerText = subtitle;
             } else {
-                elTitle.style.display = 'none';
-                elSub.style.display = 'none';
-
                 elSub.innerText = '';
+
+                conclusionContent.classList.remove('done');
 
                 document
                     .getElementById(ui.uiStrings.id.noconclusion)
                     .classList.add('active');
             }
         } else {
-            elTitle.style.display = 'none';
-            elSub.style.display = 'none';
-
             elSub.innerText = '';
 
             document
@@ -117,33 +116,80 @@ var articleComponent = (function(ui, storage) {
         }
     };
 
+    _generatingReadMore = function() {
+        var items = storage.getItems(),
+            readMoreArr = ['house', 'moving', 'development'],
+            readMoreEl = document.getElementById(ui.uiStrings.id.readTitle),
+            itemsArr,
+            elCard;
+
+        if (!storage.checkIsEmpty()) {
+            itemsArr = items.split(',');
+
+            for (let i = 0; i < itemsArr.length; i++) {
+                for (let j = 0; j < readMoreArr.length; j++) {
+                    if (itemsArr[i] == readMoreArr[j]) {
+                        readMoreArr.splice(j, 1);
+                        j--;
+                    }
+                }
+            }
+
+            if (readMoreArr.length != 0) {
+                readMoreEl.classList.add('more_content');
+
+                for (let i = 0; i < readMoreArr.length; i++) {
+                    elCard = document.getElementById(
+                        readMoreArr[i] + ui.uiStrings.id.readCard
+                    );
+
+                    elCard.classList.add('show');
+                }
+            }
+        }
+    };
+
     _resetingConclusion = function() {
         var el = document.getElementById(ui.uiStrings.id.conclusionText),
+            elSub = document.getElementById(ui.uiStrings.id.titleSubConclusion),
             notification = document.getElementById(
                 ui.uiStrings.id.noconclusion
             ),
-            elTitle = document.getElementById(ui.uiStrings.id.titleConclusion),
-            elSub = document.getElementById(ui.uiStrings.id.titleSubConclusion),
-            animationEl = document.getElementById(ui.uiStrings.id.animation);
-
-        var hoi = document.getElementById(ui.uiStrings.id.hiddenContent);
-
-        hoi.classList.remove('generated');
-
-        animationEl.classList.remove('done');
+            animationEl = document.getElementById(ui.uiStrings.id.animation),
+            content = document.getElementById(ui.uiStrings.id.hiddenContent),
+            conclusion = document.getElementById(
+                ui.uiStrings.id.conclusionContent
+            ),
+            readMoreEl = document.getElementById(ui.uiStrings.id.readTitle),
+            readCards = document.getElementsByClassName(
+                ui.uiStrings.class.cards
+            );
 
         el.innerHTML = '';
+        elSub.innerText = '';
+
         notification.classList.remove('active');
 
-        // elTitle.style.display = 'none';
-        // elSub.style.display = 'none';
+        animationEl.classList.remove('done');
+        content.classList.remove('generated');
+        conclusion.classList.remove('done');
 
-        // elSub.innerText = '';
+        readMoreEl.classList.remove('more_content');
+
+        for (let i = 0; i < readCards.length; i++) {
+            readCards[i].classList.remove('show');
+        }
+    };
+
+    _generatingLinks = function(event) {
+        subjects(event);
     };
 
     addEvents = function() {
         var el = document.getElementById(ui.uiStrings.id.conclusionButton),
-            animationEl;
+            cards = document.getElementsByClassName(ui.uiStrings.class.cards),
+            animationEl,
+            conclusion;
 
         el.addEventListener('click', function() {
             _showContent();
@@ -153,11 +199,21 @@ var articleComponent = (function(ui, storage) {
                     ui.uiStrings.id.animation
                 );
 
+                conclusion = document.getElementById(
+                    ui.uiStrings.id.conclusionContent
+                );
+
                 animationEl.classList.add('done');
+                conclusion.classList.add('done');
 
                 _generatingConclusion();
+                _generatingReadMore();
             }, 2000);
         });
+
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].addEventListener('click', _generatingLinks);
+        }
     };
 
     return {
