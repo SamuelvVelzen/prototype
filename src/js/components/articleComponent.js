@@ -1,4 +1,4 @@
-var articleComponent = (function(ui, storage) {
+var articleComponent = (function(ui, storage, scrolling) {
     var addEvents,
         _checkContent,
         _showContent,
@@ -110,6 +110,8 @@ var articleComponent = (function(ui, storage) {
         } else {
             elSub.innerText = '';
 
+            conclusionContent.classList.remove('done');
+
             document
                 .getElementById(ui.uiStrings.id.noconclusion)
                 .classList.add('active');
@@ -182,7 +184,7 @@ var articleComponent = (function(ui, storage) {
     };
 
     _generatingLinks = function(event) {
-        subjects(event);
+        window.subjects(event, ui.uiStrings.class.cards);
     };
 
     addEvents = function() {
@@ -226,4 +228,4 @@ var articleComponent = (function(ui, storage) {
         checkContent: _checkContent,
         resetConclusion: _resetingConclusion
     };
-})(uiController, storageController);
+})(uiController, storageController, scrollingController);
