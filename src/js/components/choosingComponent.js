@@ -74,8 +74,8 @@ var choosingComponent = (function(ui, article, storage) {
         }
     };
 
-    _removeSubject = function(event) {
-        var parent = _findParent(event.path, ui.uiStrings.class.info_item),
+    _removeSubject = function(event, identifier) {
+        var parent = _findParent(event.path, identifier),
             subject;
 
         if (parent.classList.contains('house')) {
@@ -170,9 +170,11 @@ var choosingComponent = (function(ui, article, storage) {
 
         for (let i = 0; i < closeArr.length; i++) {
             closeArr[i].addEventListener('click', function(event) {
-                _removeSubject(event);
+                _removeSubject(event, ui.uiStrings.class.info_item);
             });
         }
+
+        window.subjects = _removeSubject;
     };
 
     checkFilters = function() {
@@ -211,8 +213,6 @@ var choosingComponent = (function(ui, article, storage) {
             }
         }
     };
-
-    window.subjects = _subjectChoosing;
 
     return {
         init: function() {
