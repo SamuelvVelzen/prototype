@@ -13,17 +13,22 @@ var uiController = (function() {
             titleConclusion: 'title_conclusion',
             titleSubConclusion: 'title_sub_conclusion',
             readTitle: 'readmore',
-            readCard: '_card'
+            readCard: '_card',
+            loading: 'loader'
         },
         class: {
             filter_item: 'filterbalk_container_item',
             info_item: 'infocard_inner_body_item',
             close: 'close',
             content: 'content',
-            cards: 'card'
+            cards: 'card',
+            navButtons: 'nav_buttons',
+            scrollButtons: 'scroll_buttons'
         },
         style: {
-            order: 'flex_order'
+            order: 'flex_order',
+            slideIn: 'slide_in',
+            slideOut: 'slide_out'
         },
         pages: {
             article: 'article.html'
