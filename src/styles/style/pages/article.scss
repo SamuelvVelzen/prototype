@@ -14,6 +14,40 @@
         }
     }
 
+    .clickable_links {
+        position: fixed;
+        bottom: 0;
+        background-color: $light;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        z-index: 1;
+
+        .btn {
+            margin: $space1 0;
+            padding-top: $space1;
+            padding-bottom: $space1;
+
+            &:first-child {
+                margin-right: auto;
+            }
+
+            &:last-child {
+                margin-left: auto;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4) {
+                margin-right: $space3;
+            }
+        }
+    }
+
     .container {
         margin-bottom: $space5;
     }
