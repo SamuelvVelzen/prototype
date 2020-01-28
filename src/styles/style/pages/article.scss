@@ -49,9 +49,12 @@
                     animation-fill-mode: forwards;
                 }
 
-                #title_conclusion,
-                #title_sub_conclusion {
+                #conclusion_content {
                     display: none;
+
+                    &.done {
+                        display: block;
+                    }
                 }
             }
 
@@ -101,13 +104,16 @@
                 }
             }
 
-            #title_conclusion,
-            #title_sub_conclusion {
-                display: none;
-            }
-
             .text {
                 margin-bottom: $space3;
+            }
+
+            #readmore {
+                display: none;
+
+                &.more_content {
+                    display: block;
+                }
             }
         }
     }
