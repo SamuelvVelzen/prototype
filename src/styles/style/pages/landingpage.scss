@@ -9,6 +9,9 @@
             .introduction {
                 border-radius: $radius;
                 padding: $padding_default;
+                padding-left: 0;
+                padding-right: 0;
+
                 margin-top: auto;
 
                 &_image {
@@ -75,6 +78,8 @@
 
                 background: url(./../images/icons/remove.svg);
                 background-size: contain;
+
+                cursor: pointer;
             }
 
             .btn:first-child {
