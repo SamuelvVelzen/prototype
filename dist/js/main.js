@@ -473,11 +473,30 @@ var choosingComponent = (function(ui, article, storage) {
         _toggleActiveClass,
         _updateInfoCard;
 
-    _findParent = function(path, identifier) {
-        for (let i = 0; i < path.length; i++) {
-            if (path[i].classList.contains(identifier)) {
-                return path[i];
+    _findParent = function(event, identifier) {
+        var path;
+
+        if (event.path) {
+            path = event.path;
+
+            for (let i = 0; i < path.length; i++) {
+                if (path[i].classList.contains(identifier)) {
+                    return path[i];
+                }
             }
+        }
+
+        if (event.target) {
+            path = event.target;
+
+            do {
+                if (path.classList.contains(identifier)) {
+                    return path;
+                    break;
+                }
+
+                path = path.parentElement;
+            } while (path);
         }
     };
 
@@ -540,7 +559,7 @@ var choosingComponent = (function(ui, article, storage) {
     };
 
     _removeSubject = function(event, identifier) {
-        var parent = _findParent(event.path, identifier),
+        var parent = _findParent(event, identifier),
             subject;
 
         if (parent.classList.contains('house')) {
@@ -555,21 +574,18 @@ var choosingComponent = (function(ui, article, storage) {
     };
 
     _subjectChoosing = function(event) {
-        var parent = _findParent(event.path, ui.uiStrings.class.filter_item),
-            subject;
+        var parent = _findParent(event, ui.uiStrings.class.filter_item),
+            subject = '',
+            text = parent.innerText;
 
-        switch (parent.innerText) {
-            case 'Huur en koopwoningen':
-                subject = 'house';
-                break;
-            case 'Verhuisbewegingen':
-                subject = 'moving';
-                break;
-            case 'Persoonlijke ontwikkeling':
-                subject = 'development';
-                break;
-            default:
-                subject = '';
+        console.log(parent);
+
+        if (parent.classList.contains('house')) {
+            subject = 'house';
+        } else if (parent.classList.contains('moving')) {
+            subject = 'moving';
+        } else if (parent.classList.contains('development')) {
+            subject = 'development';
         }
 
         _controller(subject);
