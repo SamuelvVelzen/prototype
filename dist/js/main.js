@@ -198,27 +198,39 @@ var storageController = (function(ui) {
 })(uiController);
 
 var scrollingController = (function() {
-    var _scrollingBottom, _scrollingTop;
+    var _scrollingBottom, _scrollingTop, _viewScrolling;
 
     _scrollingBottom = function(el) {
         var bottom = el.scrollHeight;
 
         window.scrollTo({
-            top: bottom,
+            top: bottom + 106,
             behavior: 'smooth'
         });
     };
 
     _scrollingTop = function(el) {
+        var elTop = el.offsetTop;
+
         window.scrollTo({
-            top: 0,
+            top: 0 + 106,
             behavior: 'smooth'
         });
     };
 
+    _viewScrolling = function(el, way) {
+        el.scrollIntoView({
+            behavior: 'smooth',
+            block: way
+        });
+    };
+
+    _elScrolling = function(el) {};
+
     return {
         scrollingBottom: _scrollingBottom,
-        scrollingTop: _scrollingTop
+        scrollingTop: _scrollingTop,
+        viewScrolling: _viewScrolling
     };
 })();
 
@@ -410,6 +422,7 @@ var articleComponent = (function(ui, storage, scrolling) {
 
         el.addEventListener('click', function() {
             _showContent();
+            scrolling.scrollingBottom(document.body);
 
             setTimeout(() => {
                 animationEl = document.getElementById(
@@ -425,6 +438,11 @@ var articleComponent = (function(ui, storage, scrolling) {
 
                 _generatingConclusion();
                 _generatingReadMore();
+
+                scrolling.viewScrolling(
+                    document.getElementById(ui.uiStrings.id.titleConclusion),
+                    'center'
+                );
             }, 2000);
         });
 
@@ -668,11 +686,12 @@ var choosingComponent = (function(ui, article, storage) {
             checkFilters();
         },
 
-        subjects: _subjectChoosing
+        subjects: _subjectChoosing,
+        controller: _controller
     };
 })(uiController, articleComponent, storageController);
 
-var navComponent = (function(ui, storage) {
+var navComponent = (function(ui, storage, scrolling) {
     var _goNav, _checkButtons, _findActive;
 
     _findActive = function() {
@@ -729,7 +748,7 @@ var navComponent = (function(ui, storage) {
         }
     };
 
-    _checkButtons = function() {
+    _checkButtons = function(way) {
         var buttons = document.getElementsByClassName(
                 ui.uiStrings.class.navButtons
             ),
@@ -737,12 +756,31 @@ var navComponent = (function(ui, storage) {
                 '.' + ui.uiStrings.class.content + '.active'
             );
 
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('disabled');
+        }
+
         if (storage.checkIsEmpty()) {
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.add('disabled');
             }
+        }
+
+        if (way) {
+            var el = document.getElementById(way);
+
+            el.classList.add('disabled');
+        }
+    };
+
+    _goScroll = function(way) {
+        var el = document.querySelector('#' + _findActive() + '_' + way),
+            button = document.getElementById('scroll_' + way);
+        console.log(el);
+
+        if (el) {
+            scrolling.viewScrolling(el, 'start');
         } else {
-            console.log(content);
         }
     };
 
@@ -751,7 +789,9 @@ var navComponent = (function(ui, storage) {
             buttons = document.getElementsByClassName(
                 ui.uiStrings.class.navButtons
             ),
-            currentActive = document.querySelector('.content.active'),
+            currentActive = document.querySelector(
+                '.' + ui.uiStrings.class.content + '.active'
+            ),
             itemsArr;
 
         if (!storage.checkIsEmpty()) {
@@ -760,6 +800,7 @@ var navComponent = (function(ui, storage) {
 
             if (nextItem != false && nextItem != '' && nextItem != undefined) {
                 var newActive = document.getElementById(nextItem),
+                    nextNextItem = _findNext(nextItem, way),
                     slideOut,
                     slideIn;
 
@@ -775,23 +816,35 @@ var navComponent = (function(ui, storage) {
                     ui.uiStrings.style.slideOut + '_' + slideOut
                 );
 
+                if (
+                    nextNextItem == false ||
+                    nextNextItem == '' ||
+                    nextNextItem == undefined
+                ) {
+                    _checkButtons(way);
+                }
+
                 setTimeout(() => {
                     currentActive.classList.remove('active');
                     currentActive.classList.remove(
                         ui.uiStrings.style.slideOut + '_' + slideOut
                     );
 
+                    scrolling.scrollingTop(newActive);
+
                     newActive.classList.add(
                         ui.uiStrings.style.slideIn + '_' + slideIn
                     );
-
                     newActive.classList.add('active');
+
                     setTimeout(() => {
                         newActive.classList.remove(
                             ui.uiStrings.style.slideIn + '_' + slideIn
                         );
                     }, 1000);
                 }, 1000);
+            } else {
+                _checkButtons(way);
             }
         } else {
             _checkButtons();
@@ -802,6 +855,7 @@ var navComponent = (function(ui, storage) {
         init: function() {
             _checkButtons();
         },
+        goScroll: _goScroll,
         goNav: _goNav
     };
-})(uiController, storageController);
+})(uiController, storageController, scrollingController);
