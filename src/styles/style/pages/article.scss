@@ -14,6 +14,10 @@
         }
     }
 
+    .container {
+        padding-top: 0;
+    }
+
     .clickable_links {
         position: fixed;
         bottom: 0;
@@ -25,7 +29,7 @@
 
         width: 100%;
 
-        z-index: 1;
+        z-index: 5;
 
         .btn {
             margin: $space1 0;
@@ -58,7 +62,11 @@
         #development {
             width: 100vw;
             display: none;
-            padding-top: $nav_height + 46px;
+            padding-top: $nav_height - 12px;
+
+            .text {
+                margin-bottom: $space3;
+            }
 
             &.active {
                 display: block;
