@@ -221,6 +221,7 @@ var choosingComponent = (function(ui, article, storage) {
             checkFilters();
         },
 
-        subjects: _subjectChoosing
+        subjects: _subjectChoosing,
+        controller: _controller
     };
 })(uiController, articleComponent, storageController);

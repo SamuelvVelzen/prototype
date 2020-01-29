@@ -260,23 +260,23 @@
                     </a
                 >
 
-                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
+                <button id="scroll_introduction" class="btn btn_primary_outline small scroll_buttons" onclick="navComponent.goScroll('introduction')">
                     Inleiding
                 </button>
 
-                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
+                <button  id="scroll_scenario" class="btn btn_primary_outline small scroll_buttons" onclick="navComponent.goScroll('scenario')">
                     Data scenario
                 </button>
 
-                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
+                <button  id="scroll_interview" class="btn btn_primary_outline small scroll_buttons" onclick="navComponent.goScroll('interview')">
                     Interview
                 </button>
 
-                <button class="btn btn_primary_outline small scroll_buttons" onclick="">
+                <button  id="scroll_expert" class="btn btn_primary_outline small scroll_buttons" onclick="navComponent.goScroll('expert')">
                     Expert
                 </button>
 
-                <a class="btn btn_primary_link small nav_buttons" id="next" onclick="navComponent.goNav('forward');"
+                <a class="btn btn_primary_link small nav_buttons" id="forward" onclick="navComponent.goNav('forward');"
                     >
 
                     Volgende
@@ -296,7 +296,7 @@
                             class="split_left nobounds"
                         />
                         <div class="split_right large">
-                            <h1 class="title">
+                            <h1 id="house_introduction" class="title">
                                 Huur en koopwoningen
                             </h1>
                             <span class="title_sub">
@@ -323,7 +323,7 @@
                     <div class="split">
                         <div class="flourish-embed split_left nobounds" data-src="visualisation/1289730"></div>
 
-                        <div class="split_right large">
+                        <div id="house_scenario" class="split_right large">
                             <span class="title_sub">
                                 Scenario
                             </span>
@@ -499,7 +499,7 @@
                         class="large"
                     />
 
-                    <div class="container">
+                    <div id="house_interview" class="container">
                         <span class="title_sub">Interview</span>
 
                         <h2 class="title_small">
@@ -532,7 +532,7 @@
                         </p>
                     </div>
 
-                    <div class="split">
+                    <div class="split" id="house_expert">
                         <img
                             src="./../styles/images/content/startpage/expert.jpg"
                             alt=""
@@ -572,7 +572,7 @@
                     />
 
                     <div class="container">
-                        <h1 class="title">
+                        <h1 class="title" id="moving_introduction">
                             Verhuisbewegingen
                         </h1>
 
@@ -600,7 +600,7 @@
                         </p>
                     </div>
 
-                    <div class="split">
+                    <div class="split" id="moving_scenario">
                         <div class="split_left large">
                             <span class="title_sub">
                                 Scenario
@@ -692,7 +692,7 @@
                         class="large"
                     />
 
-                    <div class="container">
+                    <div class="container" id="moving_interview">
                         <span class="title_sub">
                             Interview
                         </span>
@@ -741,7 +741,7 @@
                             alt=""
                             class="split_left nobounds"
                         />
-                        <div class="split_right large">
+                        <div class="split_right large" id="moving_expert">
                             <span class="title_sub">
                                 Expert
                             </span>
@@ -770,7 +770,7 @@
                 <article id="development" class="content">
                     <div class="split">
                         <div class="split_left large">
-                            <h1 class="title">
+                            <h1 class="title" id="development_introduction">
                                 Ontwikkeling van de Crooswijker
                             </h1>
 
@@ -799,7 +799,7 @@
                         />
                     </div>
 
-                    <div class="split">
+                    <div class="split" id="development_scenario">
                         <div class="split_left large">
                             <span class="title_sub">
                                 Scenario
@@ -910,7 +910,7 @@
                         class="large"
                     />
 
-                    <div class="container">
+                    <div class="container" id="development_interview">
                         <span class="title_sub">
                             Interview
                         </span>
@@ -945,7 +945,7 @@
                         </p>
                     </div>
 
-                    <div class="split">
+                    <div class="split"  id="development_expert">
                         <img
                             src="./../styles/images/content/startpage/expert.jpg"
                             alt=""
@@ -1079,7 +1079,13 @@
                 </div>
             </article>
 
-            <span class="filterbalk_filler">hoi</div>
+            <span class="filterbalk_filler">
+                <br>
+
+                <br>
+
+                <br>
+            </span>
         </section>
 
         <script>

@@ -186,6 +186,7 @@ var articleComponent = (function(ui, storage, scrolling) {
 
         el.addEventListener('click', function() {
             _showContent();
+            scrolling.scrollingBottom(document.body);
 
             setTimeout(() => {
                 animationEl = document.getElementById(
@@ -201,6 +202,11 @@ var articleComponent = (function(ui, storage, scrolling) {
 
                 _generatingConclusion();
                 _generatingReadMore();
+
+                scrolling.viewScrolling(
+                    document.getElementById(ui.uiStrings.id.titleConclusion),
+                    'center'
+                );
             }, 2000);
         });
 
