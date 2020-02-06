@@ -61,7 +61,9 @@ var navComponent = (function(ui, storage, scrolling) {
             ),
             content = document.querySelector(
                 '.' + ui.uiStrings.class.content + '.active'
-            );
+            ),
+            items,
+            itemsArr;
 
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].classList.remove('disabled');
@@ -70,6 +72,17 @@ var navComponent = (function(ui, storage, scrolling) {
         if (storage.checkIsEmpty()) {
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.add('disabled');
+            }
+        } else {
+            items = storage.getItems();
+            itemsArr = items.split(',');
+
+            if (itemsArr.length == 1) {
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.add('disabled');
+                }
+            } else if (itemsArr.length == 2) {
+                buttons[0].classList.add('disabled');
             }
         }
 
